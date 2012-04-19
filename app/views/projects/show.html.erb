@@ -1,0 +1,74 @@
+<div class="page-header">
+  <h1>
+	  <%= @project.title %>
+	  <% if @project.goal - @project.pledges.sum('amount') <= 0 -%>
+	  <span class="label label-success">Successful</span>
+	  <% end -%>
+  <div class="pull-right">
+  <% if @project.user == current_user -%>
+	<%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-info' %>
+	<%= link_to 'Delete', @project, confirm: 'Are you sure?', method: :delete, class: 'btn btn-danger' %>
+  <% else -%>
+  <small>
+	<img src="<%= Gravatar.new(@project.user.email).image_url %>" width="25" height="25"/>
+	<%= @project.user.email %>
+	</small>
+  <% end -%>
+  </div>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="span8">
+	<%= raw(BlueCloth.new(@project.description).to_html) %>
+  </div>
+  <div class="span4">
+	  <div class="well">
+			  <% if @project.goal - @project.pledges.sum('amount') > 0 -%>
+		  		<h2><%= @project.goal - @project.pledges.sum('amount') %> <%= @project.goal_type %></h2>
+		 	   	<h4>needed for this project to be successful.</h4>
+		  	<% end -%>
+		  <p>
+		  <h2><%= @project.pledges.sum('amount') %> <%= @project.goal_type %> pledged</h2>
+		  <h4>towards a goal of <%= @project.goal %> <%= @project.goal_type %>.</h4>
+		  </p>
+	<table class="table table-condensed">
+	  <thead>
+	    <th></th>
+		<% if @project.goal_type != 'votes' -%>
+	    <th><%= @project.goal_type %></th>
+		<% end -%>
+	  </thead>
+	  <tbody>
+	<% @project.pledges.each do |pledge| %>
+	  <tr>
+	    <td>
+			<img src="<%= Gravatar.new(pledge.user.email).image_url %>" width="25" height="25"/>
+			<%= pledge.user.email %></td>
+			<% if @project.goal_type != 'votes' -%>
+	    <td><%= pledge.amount %></td>
+		<% end -%>
+	  </tr>
+	<% end %>
+	  </tbody>
+	</table>
+	<%= form_for @pledge, :html => {:class => 'form-inline'} do |f| %>
+	  <%= f.hidden_field :project_id %>
+	  <p>
+		  <% if @project.goal_type == 'votes' -%>
+		  	<% if @project.pledges.where('user_id = ?', current_user.id).count > 0 -%>
+				<%= f.submit "Revoke vote", :class => 'btn btn-danger' %>
+			<% else -%>
+		  		<%= f.submit "Vote", :class => 'btn btn-primary' %>
+			<% end -%>
+		  <% else -%>
+		  <div class="input-append">
+	  	    <%= f.text_field :amount, :id => 'appendedPrependedInput' %><%= f.submit "Pledge", :class => 'btn btn-primary' %>
+		  </div>
+		  <% end -%>
+	  </p>
+	<% end %>
+  </div>
+  </div>
+</div>
+

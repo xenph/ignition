@@ -1,0 +1,50 @@
+<%= form_for @project, :html => {:class => 'form-horizontal'} do |f| %>
+  <fieldset>
+	  <% if @project.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+	      <ul>
+	      <% @project.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+
+	  <div class="control-group">
+	    <%= f.label :title, :class => 'control-label' %>
+		<div class="controls">
+	    	<%= f.text_field :title, :class => 'input-xlarge' %>
+		</div>
+	  </div>
+	  <div class="control-group">
+	    <%= f.label :slug, :class => 'control-label' %>
+		<div class="controls">
+	    	<%= f.text_field :slug, :class => 'input-xlarge' %>
+			<p>A short description for listing displays</p>
+		</div>
+	  </div>
+	  <div class="control-group">
+	    <%= f.label :description, :class => 'control-label' %>
+		<div class="controls">
+			<%= f.text_area :description, :class => 'input-xlarge' %>
+		</div>
+	  </div>
+	  <div class="control-group">
+	    <%= f.label :goal, :class => 'control-label' %>
+		<div class="controls">
+			<%= f.number_field :goal, :class => 'input-xlarge' %>
+		</div>
+	  </div>
+	  <div class="control-group">
+	    <%= f.label :goal_type, :class => 'control-label' %>
+		<div class="controls">
+			<%= f.text_field :goal_type, :class => 'input-xlarge' %>
+		</div>
+	  </div>
+	  <div class="form-actions">
+	    <%= f.submit :class => 'btn btn-primary' %>
+		<%= link_to 'Cancel', projects_path, :class => 'btn' %>
+	  </div>
+  </fieldset>
+<% end %>

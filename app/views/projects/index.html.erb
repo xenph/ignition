@@ -1,0 +1,26 @@
+<ul class="thumbnails">
+	<% @projects.each do |project| %>
+        <li class="span3">
+          <div class="thumbnail">
+			<%= link_to project do %>
+            <img src="http://placehold.it/260x180" alt="">
+			<% end %>
+            <div class="caption">
+              <h5>
+				  <%= link_to project.title, project %> 
+				  <% if project.user == current_user %>
+				  <span class="label label-info">Owner</span>
+				  <% elsif project.pledges.where('user_id = ?', current_user.id).count > 0 -%>
+				  <span class="label label-success">Backer</span>
+				  <% end -%>
+			  </h5>
+			  <h6><%= project.user.email %></h6>
+              <p><%= project.slug %></p>
+              <div class="progress progress-success">
+			<div class="bar" style="width: <%= project.pledges.sum('amount') * 1.0 / project.goal * 100 %>%"></div>
+		</div>
+            </div>
+          </div>
+        </li>
+	<% end %>
+  </ul>

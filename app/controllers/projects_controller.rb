@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
     if params[:search] == nil
       @projects = Project.all
     else
-      @projects = Project.where('title = ?', params[:search])
+      @projects = Project.where('title like ? or slug like ?', "%#{params[:search]}%", "%#{params[:search]}%")
     end
     
     respond_to do |format|

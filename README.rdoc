@@ -1,5 +1,5 @@
 == Welcome to Ignition
 
-Ignition is a simple kickstarter clone for interal projects.
+Ignition is a simple kickstarter clone for internal projects.
 
 

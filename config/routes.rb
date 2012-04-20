@@ -3,5 +3,5 @@ Ignition::Application.routes.draw do
 
   root :to => "projects#index"
   
-  resources :projects, :pledges
+  resources :projects, :pledges, :users
 end

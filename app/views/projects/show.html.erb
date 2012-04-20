@@ -44,7 +44,7 @@
 	  <tr>
 	    <td>
 			<img src="<%= Gravatar.new(pledge.user.email).image_url %>" width="25" height="25"/>
-			<%= pledge.user.email %></td>
+			<%= link_to pledge.user.email, pledge.user %></td>
 			<% if @project.goal_type != 'votes' -%>
 	    <td><%= pledge.amount %></td>
 		<% end -%>

@@ -43,7 +43,7 @@
 					<%= current_user.email %> <b class="caret"></b>
 				</a>
 				<ul class="dropdown-menu">
-					<li><%= link_to 'My info', edit_user_registration_path %></li>
+					<li><%= link_to 'My info', current_user %></li>
           		  	<li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
 				</ul>
               </li>

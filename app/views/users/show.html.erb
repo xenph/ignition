@@ -1,0 +1,69 @@
+<div class="page-header">
+	<h1>
+		<img src="<%= Gravatar.new(@user.email).image_url %>" width="50" height="50"/>
+		<%= @user.email %>
+	    <% if @user == current_user -%>
+	  	<%= link_to 'Edit', edit_user_registration_path, class: 'btn btn-info' %>
+	    <% end -%>
+	</h1>
+</div>
+<h2>Proposals</h2>
+<ul class="thumbnails">
+<% @user_projects.each do |project| %>
+    <li class="span3">
+      <div class="thumbnail">
+		<%= link_to project do %>
+        <img src="http://placehold.it/260x180" alt="">
+		<% end %>
+        <div class="caption">
+          <h5>
+			  <%= link_to project.title, project %> 
+			  <% if project.user == current_user %>
+			  <span class="label label-info">Owner</span>
+			  <% elsif project.pledges.where('user_id = ?', current_user.id).count > 0 -%>
+			  <span class="label label-success">Backer</span>
+			  <% end -%>
+		  </h5>
+		  <h6><%= link_to project.user.email, project.user %></h6>
+          <p><%= project.slug %></p>
+          <div class="progress progress-success">
+		<div class="bar" style="width: <%= project.pledges.sum('amount') * 1.0 / project.goal * 100 %>%"></div>
+	</div>
+        </div>
+      </div>
+    </li>
+<% end %>
+</ul>
+
+<h2>Backed</h2>
+<ul class="thumbnails">
+	<% @user.pledges.each do |pledge| %>
+	<% if pledge.project != nil -%>
+    <li class="span3">
+      <div class="thumbnail">
+		<%= link_to pledge.project do %>
+        <img src="http://placehold.it/260x180" alt="">
+		<% end %>
+        <div class="caption">
+          <h5>
+			  <%= link_to pledge.project.title, pledge.project %> 
+			  <% if pledge.project.user == current_user %>
+			  <span class="label label-info">Owner</span>
+			  <% elsif pledge.project.pledges.where('user_id = ?', current_user.id).count > 0 -%>
+			  <span class="label label-success">Backer</span>
+			  <% end -%>
+		  </h5>
+		  <h6><%= link_to pledge.project.user.email, pledge.project.user %></h6>
+          <p><%= pledge.project.slug %></p>
+          <div class="progress progress-success">
+		<div class="bar" style="width: <%= pledge.project.pledges.sum('amount') * 1.0 / pledge.project.goal * 100 %>%"></div>
+	</div>
+        </div>
+      </div>
+    </li>
+	<% end -%>
+<% end %>
+</ul>
+
+
+

@@ -31,15 +31,18 @@
 		</div>
 	  </div>
 	  <div class="control-group">
+	    <%= f.label 'Pledge', :class => 'control-label' %>
+		<div class="controls">
+			<%= toggle_pledge_button(@project) %>
+			<%= f.hidden_field :goal_type %>
+		</div>
+	  </div>	
+	  <div class="control-group">
 	    <%= f.label :goal, :class => 'control-label' %>
 		<div class="controls">
-			<%= f.number_field :goal, :class => 'input-xlarge span6' %>
-		</div>
-	  </div>
-	  <div class="control-group">
-	    <%= f.label :goal_type, :class => 'control-label' %>
-		<div class="controls">
-			<%= f.text_field :goal_type, :class => 'input-xlarge span6' %>
+			<div class="input-append">
+				<%= f.number_field :goal, :class => 'span1' %><span id="goal-note" class="add-on">votes</span>			
+			</div>
 		</div>
 	  </div>
 	  <div class="form-actions">

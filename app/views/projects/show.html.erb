@@ -17,56 +17,40 @@
   </div>
   </h1>
 </div>
+<div>
 
 <div class="row">
-  <div class="span8">
-	<%= raw(@project.html_description) %>
-    <div class="well">
-  	<table class="table table-condensed">
-  	  <tbody>
-  	<% @project.events.each do |event| %>
-  	  <tr>
-  	    <td>
-  			<img src="<%= event.user.image_url %>" width="25" height="25"/>
-  			<%= link_to event.user.email, event.user %><%= event.description %>
-		    <div class="well">
-		  	<table class="table table-condensed">
-		  	  <thead>
-		  	    <th>Author</th>
-		  	    <th>Comment</th>
-		  	  </thead>
-		  	  <tbody>
-		  	<% event.comments.each do |comment| %>
-		  	  <tr>
-		  	    <td>
-		  			<img src="<%= comment.user.image_url %>" width="25" height="25"/>
-		  			<%= link_to comment.user.email, comment.user %>
-		  		</td>
-		      	<td><%= comment.comment %></td>
-		  	  </tr>
-		  	<% end %>
-		  	  </tbody>
-		  	</table>
-			<% comment = Comment.new(:event => event) -%>
-		  	<%= form_for comment, :html => {:class => 'form-inline'} do |f| %>
-		  	  <%= f.hidden_field :event_id %>
-		  	  <div>
-		  	  	 <%= f.text_field :comment %>
-		  		 <%= f.submit "Comment", :class => 'btn btn-primary' %>
-		  	  </div>
-		  	<% end %>
-		  	</div>
-		</td>
-  	  </tr>
-  	<% end %>
-  	  </tbody>
-  	</table>
-  	</div>
+  <div class="span9">
+
+	<ul class="nav nav-pills">
+	  <li class="active"><a href="#about" data-toggle="pill">About</a></li>
+	  <li><a href="#discussion" data-toggle="pill">Discussion</a></li>
+	</ul>
+
+	<div class="tab-content">
+
+	<div class="tab-pane active" id="about">
+		<div class="readme">
+			<%= raw(@project.html_description) %>
+		</div>
+	</div>
+	
+	<div class="tab-pane" id="discussion">
+		<%= render 'discussion' %>
+	</div>
+	
+	</div>
+
   </div>
-  
-  <div class="span4">
+
+  <div class="span3 project-details">
+
+	 <div class="thumbnail">
+		<img src="<%= @project.image_url %>" width="260" height="180" alt="Image of <%= @project.title %>">
+	  </div>	
+	
 	  <div class="well">
-			  <% if @project.goal - @project.pledges.sum('amount') > 0 -%>
+			<% if @project.goal - @project.pledges.sum('amount') > 0 -%>
 		  		<h2><%= @project.goal - @project.pledges.sum('amount') %> <%= @project.goal_type %></h2>
 		 	   	<h4>needed for this project to be successful.</h4>
 		  	<% end -%>
@@ -105,7 +89,7 @@
 			<% end -%>
 		  <% else -%>
 		  <div class="input-append">
-	  	    <%= f.text_field :amount, :id => 'appendedPrependedInput' %><%= f.submit "Pledge", :class => 'btn btn-inverse' %>
+	  	    <%= f.text_field :amount, :class => 'span1' %><%= f.submit "Pledge", :class => 'btn btn-inverse' %>
 		  </div>
 		  <% end -%>
 	  </p>

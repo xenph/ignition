@@ -21,7 +21,34 @@
 <div class="row">
   <div class="span8">
 	<%= raw(@project.html_description) %>
+    <div class="well">
+  	<table class="table table-condensed">
+  	  <thead>
+  	    <th>Author</th>
+  	    <th>Comment</th>
+  	  </thead>
+  	  <tbody>
+  	<% @project.comments.each do |comment| %>
+  	  <tr>
+  	    <td>
+  			<img src="<%= comment.user.image_url %>" width="25" height="25"/>
+  			<%= link_to comment.user.email, comment.user %>
+  		</td>
+      	<td><%= comment.comment %></td>
+  	  </tr>
+  	<% end %>
+  	  </tbody>
+  	</table>
+  	<%= form_for @comment, :html => {:class => 'form-inline'} do |f| %>
+  	  <%= f.hidden_field :project_id %>
+  	  <div>
+  	  	 <%= f.text_field :comment %>
+  		 <%= f.submit "Comment", :class => 'btn btn-primary' %>
+  	  </div>
+  	<% end %>
+  	</div>
   </div>
+  
   <div class="span4">
 	  <div class="well">
 			  <% if @project.goal - @project.pledges.sum('amount') > 0 -%>

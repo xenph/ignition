@@ -21,7 +21,7 @@
 	    <%= f.label :slug, :class => 'control-label' %>
 		<div class="controls">
 	    	<%= f.text_field :slug, :class => 'input-xlarge span6' %>
-			<p>A short description for listing displays</p>
+			<p class="help-block">A short description for listing displays</p>
 		</div>
 	  </div>
 	  <div class="control-group">
@@ -43,8 +43,8 @@
 		</div>
 	  </div>
 	  <div class="form-actions">
-	    <%= f.submit :class => 'btn btn-primary' %>
-		<%= link_to 'Cancel', projects_path, :class => 'btn' %>
+	    <%= f.submit :class => 'btn btn-inverse btn-large' %>
+		<%= link_to 'Cancel', projects_path, :class => 'btn btn-large' %>
 	  </div>
   </fieldset>
 <% end %>

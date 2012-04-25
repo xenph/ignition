@@ -1,6 +1,4 @@
 @import "twitter/bootstrap/bootstrap";
-body { padding-top: 60px; }
-
 @import "twitter/bootstrap/responsive";
 
 // Set the correct sprite paths
@@ -8,22 +6,38 @@ body { padding-top: 60px; }
 @iconWhiteSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings-white.png');
 
 // Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
-@fontAwesomeEotPath: asset-path('fontawesome-webfont.eot');
-@fontAwesomeWoffPath: asset-path('fontawesome-webfont.woff');
-@fontAwesomeTtfPath: asset-path('fontawesome-webfont.ttf');
-@fontAwesomeSvgzPath: asset-path('fontawesome-webfont.svgz');
-@fontAwesomeSvgPath: asset-path('fontawesome-webfont.svg');
+//@fontAwesomeEotPath: asset-path('fontawesome-webfont.eot');
+//@fontAwesomeWoffPath: asset-path('fontawesome-webfont.woff');
+//@fontAwesomeTtfPath: asset-path('fontawesome-webfont.ttf');
+//@fontAwesomeSvgzPath: asset-path('fontawesome-webfont.svgz');
+//@fontAwesomeSvgPath: asset-path('fontawesome-webfont.svg');
 
 // Font Awesome
-@import "fontawesome";
+//@import "fontawesome";
 
-// Your custom LESS stylesheets goes here
-//
-// Since bootstrap was imported above you have access to its mixins which
-// you may use and inherit here
-//
-// If you'd like to override bootstrap's own variables, you can do so here as well
-// See http://twitter.github.com/bootstrap/less.html for their names and documentation
-//
-// Example:
-// @linkColor: #ff0000;
+//spot: F05250
+//dark: 5F6273
+//medium: A4ABBF
+//light: CCC9D1
+//base: E2E1E9
+
+@bodyColor: #A4ABBF;
+
+@navbarBackground: #F0312C;
+@navbarBackgroundHighlight: #F05250;
+@navbarLinkColor: #FFFFFF;
+@navbarSearchBackground: lighten(@navbarBackground, 15%);
+@navbarSearchPlaceholderColor: #FFFFFF;
+
+@linkColor: #F0312C;
+
+body {
+	padding-top: 60px;
+	font-family: 'Merriweather', serif;
+	/*font-family: "Open Sans", sans-serif;*/
+}
+
+h1,h2,h3,h4,h5,h6,p,li,input,button {
+	font-family: 'Merriweather', serif;
+}
+

@@ -10,7 +10,7 @@
 	<%= link_to 'Delete', @project, confirm: 'Are you sure?', method: :delete, class: 'btn btn-danger' %>
   <% else -%>
   <small>
-	<img src="<%= Gravatar.new(@project.user.email).image_url %>" width="25" height="25"/>
+	<img src="<%= @project.user.image_url %>" width="25" height="25"/>
 	<%= @project.user.email %>
 	</small>
   <% end -%>
@@ -20,7 +20,7 @@
 
 <div class="row">
   <div class="span8">
-	<%= raw(BlueCloth.new(@project.description).to_html) %>
+	<%= raw(@project.html_description) %>
   </div>
   <div class="span4">
 	  <div class="well">
@@ -43,7 +43,7 @@
 	<% @project.pledges.each do |pledge| %>
 	  <tr>
 	    <td>
-			<img src="<%= Gravatar.new(pledge.user.email).image_url %>" width="25" height="25"/>
+			<img src="<%= pledge.user.image_url %>" width="25" height="25"/>
 			<%= link_to pledge.user.email, pledge.user %></td>
 			<% if @project.goal_type != 'votes' -%>
 	    <td><%= pledge.amount %></td>

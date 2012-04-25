@@ -11,11 +11,13 @@ class PledgesController < ApplicationController
       @pledge.amount = existing_pledge != nil ? 0 : 1
     end
     if @pledge.amount <= 0
+      Event::record @pledge.project, current_user, 'removed their pledge.'
       @pledge.destroy
       flash[:notice] = 'Pledge was successfully removed.'
       redirect_to(@pledge.project)
     else
       if @pledge.save
+        Event::record @pledge.project, current_user, "pleged this project #{@pledge.amount} #{@pledge.project.goal_type}."
         flash[:notice] = "You have successfully pledged #{@pledge.amount} #{@pledge.project.goal_type} to the #{@pledge.project.title} cause."
         redirect_to(@pledge.project)
       else

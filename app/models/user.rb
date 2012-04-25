@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :pledges
   has_many :comments
+  has_many :events
   has_many :projects, :through => :pledges
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable

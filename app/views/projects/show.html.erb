@@ -47,6 +47,19 @@
   	  </div>
   	<% end %>
   	</div>
+    <div class="well">
+  	<table class="table table-condensed">
+  	  <tbody>
+  	<% @project.events.each do |event| %>
+  	  <tr>
+  	    <td>
+  			<img src="<%= event.user.image_url %>" width="25" height="25"/>
+  			<%= link_to event.user.email, event.user %><%= event.description %></td>
+  	  </tr>
+  	<% end %>
+  	  </tbody>
+  	</table>
+  	</div>
   </div>
   
   <div class="span4">

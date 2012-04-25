@@ -1,6 +1,6 @@
 <div class="page-header">
 	<h1>
-		<img src="<%= Gravatar.new(@user.email).image_url %>" width="50" height="50"/>
+		<img src="<%= @user.image_url %>" width="50" height="50"/>
 		<%= @user.email %>
 	    <% if @user == current_user -%>
 	  	<%= link_to 'Edit', edit_user_registration_path, class: 'btn btn-info' %>

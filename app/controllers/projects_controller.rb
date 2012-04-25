@@ -47,6 +47,7 @@ class ProjectsController < ApplicationController
       flash[:alert] = 'You can only edit projects that you created.'
       redirect_to(@project)
     end
+    Event::record @project, current_user, 'edited this project.'
   end
 
   # POST /projects
@@ -57,6 +58,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
+        Event::record @project, current_user, 'created this project.'
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render json: @project, status: :created, location: @project }
       else

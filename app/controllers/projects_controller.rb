@@ -21,7 +21,6 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @pledge = Pledge.new( :project => @project )
-    @comment = Comment.new( :project => @project )
 
     respond_to do |format|
       format.html # show.html.erb

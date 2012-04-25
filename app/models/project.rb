@@ -3,4 +3,9 @@ class Project < ActiveRecord::Base
   has_many :pledges
   has_many :users, :through => :pledges
   belongs_to :user
+  
+  def html_description
+    BlueCloth.new(description).to_html
+  end
+
 end

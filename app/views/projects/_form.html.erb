@@ -10,7 +10,6 @@
 	      </ul>
 	    </div>
 	  <% end %>
-
 	  <div class="control-group">
 	    <%= f.label :title, :class => 'control-label' %>
 		<div class="controls">
@@ -41,7 +40,7 @@
 	    <%= f.label :goal, :class => 'control-label' %>
 		<div class="controls">
 			<div class="input-append">
-				<%= f.number_field :goal, :class => 'span1' %><span id="goal-note" class="add-on">votes</span>			
+				<%= f.number_field :goal, :class => 'span1' %><span id="goal-note" class="add-on"><%= @project.goal_type || 'votes' %></span>			
 			</div>
 		</div>
 	  </div>

@@ -1,0 +1,41 @@
+<div class="well">
+<table class="table table-condensed">
+  <tbody>
+<% @project.events.desc.each do |event| %>
+  <tr>
+    <td>
+		<img src="<%= event.user.image_url %>" width="25" height="25"/>
+		<%= link_to event.user.email, event.user %><%= event.description %>
+	    <div class="well">
+	  	<table class="table table-condensed">
+	  	  <thead>
+	  	    <th>Author</th>
+	  	    <th>Comment</th>
+	  	  </thead>
+	  	  <tbody>
+	  	<% event.comments.each do |comment| %>
+	  	  <tr>
+	  	    <td>
+	  			<img src="<%= comment.user.image_url %>" width="25" height="25"/>
+	  			<%= link_to comment.user.email, comment.user %>
+	  		</td>
+	      	<td><%= comment.comment %></td>
+	  	  </tr>
+	  	<% end %>
+	  	  </tbody>
+	  	</table>
+		<% comment = Comment.new(:event => event) -%>
+	  	<%= form_for comment, :html => {:class => 'form-inline'} do |f| %>
+	  	  <%= f.hidden_field :event_id %>
+	  	  <div>
+	  	  	 <%= f.text_field :comment %>
+	  		 <%= f.submit "Comment", :class => 'btn btn-primary' %>
+	  	  </div>
+	  	<% end %>
+	  	</div>
+	</td>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+</div>

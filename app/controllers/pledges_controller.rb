@@ -17,7 +17,7 @@ class PledgesController < ApplicationController
       redirect_to(@pledge.project)
     else
       if @pledge.save
-        Event::record @pledge.project, current_user, "pleged this project #{@pledge.amount} #{@pledge.project.goal_type}."
+        Event::record @pledge.project, current_user, "committed to this project #{@pledge.amount} #{@pledge.project.goal_type}."
         flash[:notice] = "You have successfully pledged #{@pledge.amount} #{@pledge.project.goal_type} to the #{@pledge.project.title} cause."
         redirect_to(@pledge.project)
       else

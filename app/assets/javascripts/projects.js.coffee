@@ -12,3 +12,11 @@ jQuery ($) ->
 		selectHours()
 	$('#pledge-votes').click ->
 		selectVotes()
+		
+	$('.add-comment button').click ->
+		$(this).next().toggle()
+		
+	if window.location.hash
+		$('.nav-pills li:last a').tab('show')
+	else
+		$('.nav-pills li:first a').tab('show')

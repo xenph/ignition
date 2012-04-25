@@ -3,11 +3,11 @@ class CommentsController < ApplicationController
     @comment = Comment.new(params[:comment])
     @comment.user = current_user
     
-    if @comment.save
-      redirect_to(@comment.event.project)
-    else
+    unless @comment.save
       flash[:notice] = "Error creating comment: #{@comment.errors}"
-      redirect_to(@comment.event.project)
+      redirect_to "/projects/#{@comment.event.project.id}\#discussion"
     end
+    
+    redirect_to "/projects/#{@comment.event.project.id}\#comment-#{@comment.id}"
   end
 end

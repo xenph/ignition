@@ -19,3 +19,25 @@
 	-moz-border-radius: 4px;
 	border-radius: 4px;	
 }
+
+.event {
+	padding: 19px;
+	border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.event .comment {
+	margin-top: 19px;
+}
+
+.comment-text {
+	margin-top: 19px;
+}
+
+.add-comment {
+	margin-top: 19px;
+}
+
+.comment-form {
+	margin-top: 19px;
+	display: none;
+}

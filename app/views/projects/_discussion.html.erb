@@ -1,41 +1,37 @@
 <div class="well">
-<table class="table table-condensed">
-  <tbody>
-<% @project.events.desc.each do |event| %>
-  <tr>
-    <td>
+	<% @project.events.desc.each do |event| %>
+	
+	  <div class="event">
 		<img src="<%= event.user.image_url %>" width="25" height="25"/>
-		<%= link_to event.user.email, event.user %><%= event.description %>
-	    <div class="well">
-	  	<table class="table table-condensed">
-	  	  <thead>
-	  	    <th>Author</th>
-	  	    <th>Comment</th>
-	  	  </thead>
-	  	  <tbody>
+		<strong><%= link_to event.user.email, event.user %> <%= event.description %></strong>
+		<span class="label pull-right"><%= time_ago_in_words(event.created_at) %> ago</span>
+		
 	  	<% event.comments.each do |comment| %>
-	  	  <tr>
-	  	    <td>
-	  			<img src="<%= comment.user.image_url %>" width="25" height="25"/>
-	  			<%= link_to comment.user.email, comment.user %>
-	  		</td>
-	      	<td><%= comment.comment %></td>
-	  	  </tr>
-	  	<% end %>
-	  	  </tbody>
-	  	</table>
-		<% comment = Comment.new(:event => event) -%>
-	  	<%= form_for comment, :html => {:class => 'form-inline'} do |f| %>
-	  	  <%= f.hidden_field :event_id %>
-	  	  <div>
-	  	  	 <%= f.text_field :comment %>
-	  		 <%= f.submit "Comment", :class => 'btn btn-primary' %>
-	  	  </div>
-	  	<% end %>
-	  	</div>
-	</td>
-  </tr>
-<% end %>
-  </tbody>
-</table>
+		<div class="comment well" id="comment-<%= comment.id %>">
+			<img src="<%= comment.user.image_url %>" width="25" height="25"/>
+  			<%= link_to comment.user.email, comment.user %> said:
+			<span class="label pull-right"><%= time_ago_in_words(comment.created_at) %> ago</span>
+			<div class="comment-text">
+				<%= comment.comment %>
+			</div>
+		</div>
+		<% end %>
+		
+		<div class="add-comment">
+			<button class="btn btn-mini" type="button">Comment</button>
+			<div class="comment-form">
+				<% comment = Comment.new(:event => event) -%>
+			  	<%= form_for comment, :html => {:class => 'form-vertical'} do |f| %>
+			  	  <%= f.hidden_field :event_id %>
+			  	  <%= f.text_area :comment, :class => 'span6', :rows => '5' %>
+			  	  <div class="controls">
+					<%= f.submit "Add", :class => 'btn btn-inverse' %>
+				  </div>
+			  	<% end %>
+			</div>
+		</div>
+		
+	  </div>
+	  
+	<% end %>
 </div>

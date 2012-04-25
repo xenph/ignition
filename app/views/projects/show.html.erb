@@ -6,7 +6,7 @@
 	  <% end -%>
   <div class="pull-right">
   <% if @project.user == current_user -%>
-	<%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-info' %>
+	<%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-inverse' %>
 	<%= link_to 'Delete', @project, confirm: 'Are you sure?', method: :delete, class: 'btn btn-danger' %>
   <% else -%>
   <small>
@@ -63,7 +63,7 @@
 			<% end -%>
 		  <% else -%>
 		  <div class="input-append">
-	  	    <%= f.text_field :amount, :id => 'appendedPrependedInput' %><%= f.submit "Pledge", :class => 'btn btn-primary' %>
+	  	    <%= f.text_field :amount, :id => 'appendedPrependedInput' %><%= f.submit "Pledge", :class => 'btn btn-inverse' %>
 		  </div>
 		  <% end -%>
 	  </p>

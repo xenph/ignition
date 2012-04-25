@@ -4,7 +4,7 @@
           <div class="thumbnail">
 			<%= link_to project do %>
 			<!-- href="http://placehold.it/260x180/5F6273/FFFFFF&text=..." -->
-            <img src="http://lorempixel.com/260/180/abstract/<% rand 1..10 %>" width="260" height="180" alt="Image of <%= project.title %>">
+            <img src="http://lorempixel.com/260/180/abstract/<%= rand 1..10 %>" width="260" height="180" alt="Image of <%= project.title %>">
 			<% end %>
             <div class="caption">
               <h5>

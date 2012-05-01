@@ -3,13 +3,13 @@
 	
 	  <div class="event well">
 		<img src="<%= event.user.image_url %>" width="25" height="25"/>
-		<strong><%= link_to event.user.email, event.user %> <%= event.description %></strong>
+		<strong><%= link_to event.user.username, event.user %> <%= event.description %></strong>
 		<span class="label pull-right event-time"><%= time_ago_in_words(event.created_at) %> ago</span>
 		
 	  	<% event.comments.each do |comment| %>
 		<div class="comment well" id="comment-<%= comment.id %>">
 			<img src="<%= comment.user.image_url %>" width="25" height="25"/>
-  			<%= link_to comment.user.email, comment.user %> said:
+  			<%= link_to comment.user.username, comment.user %> said:
 			<span class="label pull-right"><%= time_ago_in_words(comment.created_at) %> ago</span>
 			<div class="comment-text">
 				<%= comment.comment %>

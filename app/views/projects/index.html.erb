@@ -14,7 +14,7 @@
 				  <span class="label label-success">Backer</span>
 				  <% end -%>
 			  </h5>
-			  <h6><%= link_to project.user.email, project.user %></h6>
+			  <h6><%= link_to project.user.username, project.user %></h6>
               <p><%= project.slug %></p>
               <div class="progress progress-success">
 			<div class="bar" style="width: <%= project.pledges.sum('amount') * 1.0 / project.goal * 100 %>%"></div>

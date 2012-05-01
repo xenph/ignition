@@ -11,7 +11,7 @@
   <% else -%>
   <small>
 	<img src="<%= @project.user.image_url %>" width="25" height="25"/>
-	<%= @project.user.email %>
+	<%= @project.user.username %>
 	</small>
   <% end -%>
   </div>
@@ -70,7 +70,7 @@
 	  <tr>
 	    <td>
 			<img src="<%= pledge.user.image_url %>" width="25" height="25"/>
-			<%= link_to pledge.user.email, pledge.user %></td>
+			<%= link_to pledge.user.username, pledge.user %></td>
 			<% if @project.goal_type != 'votes' -%>
 	    <td><%= pledge.amount %></td>
 		<% end -%>

@@ -7,7 +7,7 @@ class Project < ActiveRecord::Base
   before_create :assign_random_image
   
   def html_description
-    BlueCloth.new(description).to_html
+    BlueCloth.new(Sanitize.clean(description)).to_html
   end
   
   def assign_random_image

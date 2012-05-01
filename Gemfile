@@ -9,6 +9,7 @@ gem 'twitter-bootstrap-rails'
 gem 'devise'
 gem 'bluecloth'
 gem 'gravatar-ultimate'
+gem 'sanitize'
 
 
 # Gems used only for assets and not required

@@ -4,7 +4,9 @@ In the simplest of terms, Ignition is a very basic crowd funding web application
 
 == Why would I want to use it?
 
-Ignition is useful for companies or teams with 20% time, or another variant on the undirected employee time. Ignition allows employees to find projects that they are interested in helping come to fruition. Through an open source communication model it faciltates co-operation with out the need for central management.
+Ignition is useful for companies or teams with 20% time, or another variant on the undirected employee time.
+
+Ignition allows employees to find projects that they are interested in helping come to fruition. Through an open source communication model it facilitates co-operation without the need for central management.
 
 == How do I install it?
 

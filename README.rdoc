@@ -41,4 +41,12 @@ The {Heroku}[http://heroku.com] documentation has a very good entry on {setting 
     $ heroku create --stack cedar
     $ git push heroku master
 
+== Contribute
+
+We'd love for you to contribute to Ignition! Just fork the code, make your change and submit a pull request.
+
+== Ignition
+
+The original idea for Ignition came from {Ajeya}[http://www.github.com/ajeya], and was lovingly hand crafted by {Chris Beckett}[http://www.twitter.com/chris_beckett] & {Mark}[http://www.twitter.com/maetl].
+
 

@@ -1,6 +1,6 @@
 = Ignition
 
-In the simplest of terms, Ignition is a very basic crowd funding web application - a la Kickstarter. It allows users to create projects, for which others can vote on or pledge time to. It was written for managing internal projects at {BigCommerce}[http://www.bigcommerce.com]. 
+In the simplest of terms, Ignition is a very basic crowd funding web application — a la Kickstarter. It allows users to create projects, for which others can vote on or pledge time to. It was written for managing internal projects at {BigCommerce}[http://www.bigcommerce.com]. 
 
 == Why would I want to use it?
 

@@ -21,6 +21,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @pledge = Pledge.new( :project => @project )
+    @watch = Watch.new( :project => @project )
 
     respond_to do |format|
       format.html # show.html.erb
@@ -57,7 +58,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        Event::record @project, current_user, 'created this project.'
+        Event::record @project, current_user, 'created'
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render json: @project, status: :created, location: @project }
       else
@@ -74,6 +75,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.user == current_user && @project.update_attributes(params[:project])
+        Event::record @project, current_user, 'edited'
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
         format.json { head :no_content }
       else

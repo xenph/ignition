@@ -3,7 +3,7 @@
 	
 	  <div class="event well">
 		<img src="<%= event.user.image_url %>" width="25" height="25"/>
-		<strong><%= link_to event.user.username, event.user %> <%= event.description %></strong>
+		<strong><%= link_to event.user.username, event.user %> <%= event.description %> this project.</strong>
 		<span class="label pull-right event-time"><%= time_ago_in_words(event.created_at) %> ago</span>
 		
 	  	<% event.comments.each do |comment| %>

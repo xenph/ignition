@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
       redirect_to "/projects/#{@comment.event.project.id}\#discussion"
     end
     
+    Event::record @comment.event.project, current_user, 'commented on'
     redirect_to "/projects/#{@comment.event.project.id}\#comment-#{@comment.id}"
   end
 end

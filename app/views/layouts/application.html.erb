@@ -48,14 +48,24 @@
 				<li class="dropdown">
 	              	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 						<i class="icon-comment icon-white"></i>
-						<span class="badge badge-info">2</span>
+						<% if current_user.new_notification_count > 0 -%>
+						<span class="badge"><%= current_user.new_notification_count %></span>
+						<% end -%>
 						<b class="caret"></b>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a>Chris Commented on Improve Ignition</a></li>
-						<li><a>Chai edited Something</a></li>
-	          		  	<li><a>Mark replyed to your commment on Improve Ignition</a></li>
-						<li><a>See All Notifications</a></li>
+						<% current_user.notifications.limit(3).each do |event| %>
+						<li>
+							<%= link_to(event.project) do %>
+							<img src="<%= event.user.image_url %>" width="25" height="25"/> <%= event.user.username %> <%= event.description %> <%= event.project.title%> 
+							<% if event.id > current_user.event_read_count -%>
+							<span class="label">unread</span>
+							<% end -%>
+							
+							<% end -%>
+						</li>
+						<% end -%>
+						<li><%= link_to "View All Notifications", notifications_path %></li>
 					</ul>
 				</li>
 			</ul>

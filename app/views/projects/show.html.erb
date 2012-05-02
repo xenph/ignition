@@ -2,23 +2,31 @@
   <h1>
 	  <%= @project.title %>
 	  <% if @project.goal - @project.pledges.sum('amount') <= 0 -%>
-	  <span class="label label-success">Successful</span>
+		  <span class="label label-success">Successful</span>
 	  <% end -%>
-  <div class="pull-right">
-  <% if @project.user == current_user -%>
-	<%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-inverse' %>
-	<%= link_to 'Delete', @project, confirm: 'Are you sure?', method: :delete, class: 'btn btn-danger' %>
-  <% else -%>
-  <small>
-	<img src="<%= @project.user.image_url %>" width="25" height="25"/>
-	<%= @project.user.username %>
-	</small>
-  <% end -%>
-  </div>
+	  <div class="pull-right">
+		  <% if @project.user == current_user -%>
+			  <%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-inverse' %>
+			  <%= link_to 'Delete', @project, confirm: 'Are you sure?', method: :delete, class: 'btn btn-danger' %>
+		  <% else -%>
+			  <small>
+				  <img src="<%= @project.user.image_url %>" width="25" height="25"/>
+					<%= @project.user.username %>
+			  </small>
+		  <% end -%>
+		  <% if @project.watches.where('user_id = ?', current_user.id).count == 0 -%>
+		  <%= link_to(watches_path(:project_id => @project.id), method: :post, class: 'btn btn-primary') do %>
+			    <i class="icon-eye-open icon-white"></i> Watch
+			  <% end %>
+		  <% else -%>	
+			  <%= link_to(watches_path(:project_id => @project.id), method: :post, class: 'btn btn-inverse') do %>
+			    <i class="icon-eye-close icon-white"></i> Stop Watching
+			  <% end %>
+		  <% end -%>
+	  </div>
   </h1>
 </div>
 <div>
-
 <div class="row">
   <div class="span9">
 
@@ -26,7 +34,7 @@
 	  <li><a href="#about" data-toggle="pill">About</a></li>
 	  <li><a href="#discussion" data-toggle="pill">Discussion</a></li>
 	</ul>
-
+	
 	<div class="tab-content">
 
 	<div class="tab-pane active" id="about">

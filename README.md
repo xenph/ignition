@@ -51,4 +51,5 @@ We'd love for you to contribute to Ignition! Just fork the code, make your chang
 
 The original idea for Ignition came from [Ajeya](http://www.github.com/ajeya), and was lovingly hand crafted by [Chris Beckett](http://www.twitter.com/chris_beckett) & [Mark Rickerby](http://www.twitter.com/maetl).
 
-
+##License
+© 2013 Philip Muir. All rights reserved.

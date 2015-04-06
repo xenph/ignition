@@ -1,5 +1,4 @@
 class Project < ActiveRecord::Base
-  attr_accessible :description, :goal, :title, :goal_type, :slug, :author, :image_url
   has_many :pledges
   has_many :events
   has_many :users, :through => :pledges

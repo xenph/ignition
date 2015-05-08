@@ -1,6 +1,6 @@
 class PledgesController < ApplicationController
   def create
-    @pledge = Pledge.new(params[:pledge])
+    @pledge = Pledge.new(pledge_params)
     @pledge.user = current_user
     existing_pledge = Pledge.where("project_id = ? AND user_id = ?", @pledge.project.id, @pledge.user.id).first
     if existing_pledge != nil
@@ -26,4 +26,11 @@ class PledgesController < ApplicationController
       end
     end
   end
+
+  private
+
+  def pledge_params
+    params.require(:pledge).permit(:project, :amount, :project_id)
+  end
+
 end

@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def create
-    @comment = Comment.new(params[:comment])
+    @comment = Comment.new(comment_params)
     @comment.user = current_user
     
     unless @comment.save
@@ -9,5 +9,11 @@ class CommentsController < ApplicationController
     end
     
     redirect_to "/projects/#{@comment.event.project.id}\#comment-#{@comment.id}"
+  end
+
+  private
+
+  def comment_params
+  	params.require(:comment).permit(:event, :comment, :event_id)
   end
 end
